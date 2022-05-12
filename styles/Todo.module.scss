@@ -1,0 +1,16 @@
+.container {
+    padding: 0 2rem;
+}
+
+.main {
+    min-height: 100vh;
+    padding: 15px 60px 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.main__inputWrap {
+    display: flex;
+    width: 100%;
+}
