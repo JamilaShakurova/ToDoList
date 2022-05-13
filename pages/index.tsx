@@ -1,30 +1,32 @@
 import React from 'react'
-import {Button, Checkbox, Input, List, ListItem} from '@mui/material';
+import {Button, Input, List } from '@mui/material';
 import styles from '../styles/Todo.module.scss';
+import TodoItem from "../components/TodoItem/TodoItem";
 
-type Task = {
+export type Task = {
     userId: number,
     id: number,
     title: string,
     completed: boolean,
 }
 
-type TodoProps = {
+type TodoListProps = {
     tasksList: Task[]
 }
 
 
-const Todo: React.FC<TodoProps> = ({tasksList}) => {
-    return (<div className={styles.main}>
+const TodoList: React.FC<TodoListProps> = ({tasksList}) => {
+    return (<div className={styles.todo}>
         <h2>To do List</h2>
-        <div className={styles.main__inputWrap}>
+        <div className={styles.todo__inputWrap}>
             <Input fullWidth placeholder='Enter todo item'></Input>
             <Button variant="outlined">Add&nbsp;item</Button>
         </div>
         <List>
             {
                 tasksList.map(task => {
-                        return <ListItem key={task.id}><Checkbox/><span>{task.title}</span></ListItem>
+                        return <TodoItem task={task} key={task.id} />
+
                     }
                 )
             }
@@ -32,7 +34,7 @@ const Todo: React.FC<TodoProps> = ({tasksList}) => {
     </div>)
 };
 
-export default Todo;
+export default TodoList;
 
 export const getServerSideProps = async () => {
     const res = await fetch(`https://jsonplaceholder.typicode.com/todos?_limit=20`)

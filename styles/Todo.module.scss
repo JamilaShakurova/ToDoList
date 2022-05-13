@@ -2,7 +2,7 @@
     padding: 0 2rem;
 }
 
-.main {
+.todo {
     min-height: 100vh;
     padding: 15px 60px 0;
     flex: 1;
@@ -10,7 +10,7 @@
     flex-direction: column;
 }
 
-.main__inputWrap {
+.todo__inputWrap {
     display: flex;
     width: 100%;
 }

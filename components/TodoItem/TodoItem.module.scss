@@ -1,0 +1,11 @@
+.todoList__span {
+  flex-grow: 1;
+
+  &--completed {
+    text-decoration: line-through;
+  }
+}
+
+.todoList__itemClose {
+  margin-left: auto;
+}
