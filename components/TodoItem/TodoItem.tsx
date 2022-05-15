@@ -2,14 +2,15 @@ import React, {useState} from "react";
 import styles from "./TodoItem.module.scss";
 import {Checkbox, FormControlLabel, IconButton, ListItem} from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import {Task} from "../../pages";
+import {Task} from "../../types/const";
 
 type TodoItemProps = {
     task: Task;
+    deleteTask: (taskId: number) => void;
 }
 
-const TodoItem: React.FC<TodoItemProps> = ({task}) => {
-    const [done, setDone] = useState(false)
+const TodoItem: React.FC<TodoItemProps> = ({task, deleteTask}) => {
+    const [done, setDone] = useState(false);
 
     return (<ListItem>
         <FormControlLabel
@@ -19,8 +20,8 @@ const TodoItem: React.FC<TodoItemProps> = ({task}) => {
             className={`${styles['todoList__span']} ${done ? styles['todoList__span--completed']: ''}`}
             labelPlacement="end"
         />
-        <IconButton className={styles['todoList__itemClose']} aria-label="delete" size="small">
-            <DeleteIcon fontSize="small"/>
+        <IconButton onClick={() => deleteTask(task.id)} className={styles['todoList__itemClose']} aria-label="delete" size="small">
+            <DeleteIcon fontSize="small" />
         </IconButton></ListItem>)
 };
 
