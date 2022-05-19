@@ -14,6 +14,21 @@ const TodoList: React.FC<TodoListProps> = ({tasksList}) => {
     const [text, setText] = useState('');
     const [todos, setTodos] = useState<Task[]>(tasksList);
 
+    const addTask = () => {
+        if (text.trim().length) {
+            setTodos([
+                ...todos,
+                {
+                    id: new Date().toISOString(),
+                    title: text.trim(),
+                    completed: false,
+                }
+            ])
+            console.log(todos)
+            setText('')
+        }
+    }
+
     const deleteTask = (taskId: number) => {
         setTodos(todos.filter(task => task.id !== taskId))
     }
@@ -23,7 +38,7 @@ const TodoList: React.FC<TodoListProps> = ({tasksList}) => {
         <div className={styles.todo__inputWrap}>
             <Input value={text} fullWidth placeholder='Enter todo item'
                    onChange={(e) => setText(e.target.value)}></Input>
-            <Button variant="outlined">Add&nbsp;item</Button>
+            <Button onClick={addTask} variant="outlined">Add&nbsp;item</Button>
         </div>
 
         <List>
